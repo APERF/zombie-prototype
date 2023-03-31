@@ -9,10 +9,15 @@ namespace CoreGameplay.PlayerMovement
         private Rigidbody playerRb;
         [SerializeField] private float _speed = 5f;
 
+        [SerializeField] private Transform _mainCamera;
+        [SerializeField] private Transform _target;
+
         public Vector2 Direction;
 
         public Rigidbody PlayerRb { get => playerRb; }
         public float Speed { get => _speed; }
+        public Transform MainCamera { get => _mainCamera; }
+        public Transform Target { get => _target; }
 
         #region UnityEvents
         private void Start()

@@ -6,11 +6,10 @@ namespace CoreGameplay.PlayerMovement
 {
     public class PlayerMovementSystem : Singleton<PlayerMovementSystem>
     {
-        [SerializeField] private GameObject _mainCamera;
-        [SerializeField] private GameObject _target;
         [SerializeField] private float _moveThreshold = 2f;
 
         public List<PlayerMover> Components;
+        public bool AimingState;
 
         private void FixedUpdate()
         {
@@ -22,22 +21,30 @@ namespace CoreGameplay.PlayerMovement
 
         public void Move(PlayerMover mover)
         {
+            AlterPosition(mover);
+            AlterRotation(mover);
+        }
+
+        private void AlterPosition(PlayerMover mover)
+        {
             float y = mover.PlayerRb.velocity.y;
 
-            Vector3 moveDirection = new Vector3(0, y, mover.Direction.y);
-            moveDirection = _mainCamera.transform.TransformDirection(moveDirection);
-            moveDirection.x += mover.Direction.x;
+            Vector3 moveDirection = new Vector3(mover.Direction.x, y, mover.Direction.y);
+            moveDirection = mover.MainCamera.TransformDirection(moveDirection);
             moveDirection.y = y;
             moveDirection *= mover.Speed;
             mover.PlayerRb.velocity = moveDirection;
+        }
 
-            Vector3 lookAtPos = _mainCamera.transform.forward * 10;
+        private void AlterRotation(PlayerMover mover)
+        {
+            Vector3 lookAtPos = mover.MainCamera.TransformPoint(new Vector3(0f, 0f, 10f));
             lookAtPos.y = mover.transform.position.y;
-            _target.transform.position = lookAtPos;
-            
-            if(moveDirection.magnitude * 10f > _moveThreshold)
+            mover.Target.position = lookAtPos;
+
+            if (mover.Direction.magnitude * 10f > _moveThreshold || AimingState)
             {
-                Vector3 relativePos = _target.transform.position - mover.transform.position;
+                Vector3 relativePos = mover.Target.position - mover.transform.position;
                 Quaternion newRotation = Quaternion.LookRotation(relativePos, Vector3.up);
                 mover.transform.rotation = newRotation;
             }
