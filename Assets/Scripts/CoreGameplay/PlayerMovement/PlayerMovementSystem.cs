@@ -9,7 +9,6 @@ namespace CoreGameplay.PlayerMovement
         [SerializeField] private float _moveThreshold = 2f;
 
         public List<PlayerMover> Components;
-        public bool AimingState;
 
         private void FixedUpdate()
         {
@@ -42,7 +41,7 @@ namespace CoreGameplay.PlayerMovement
             lookAtPos.y = mover.transform.position.y;
             mover.Target.position = lookAtPos;
 
-            if (mover.Direction.magnitude * 10f > _moveThreshold || AimingState)
+            if (mover.Direction.magnitude * 10f > _moveThreshold || mover.RotateAlways)
             {
                 Vector3 relativePos = mover.Target.position - mover.transform.position;
                 Quaternion newRotation = Quaternion.LookRotation(relativePos, Vector3.up);

@@ -6,11 +6,12 @@ namespace CoreGameplay.PlayerMovement
     public class PlayerMover : MonoBehaviour
     {
         [SerializeField] private MovementAnimationHandler _animationHandler;
-        private Rigidbody playerRb;
         [SerializeField] private float _speed = 5f;
-
         [SerializeField] private Transform _mainCamera;
         [SerializeField] private Transform _target;
+        
+        private Rigidbody playerRb;
+        public bool RotateAlways;
 
         public Vector2 Direction;
 
@@ -22,9 +23,9 @@ namespace CoreGameplay.PlayerMovement
         #region UnityEvents
         private void Start()
         {
-            PlayerMovementSystem.s_Instance.Components.Add(this);
             playerRb = GetComponent<Rigidbody>();
             Direction = Vector2.zero;
+            RotateAlways = false;
         }
 
         private void Update()

@@ -10,7 +10,6 @@ namespace CoreGameplay.PlayerInput
         public UnityBoolEvent OnAim;
 
         [SerializeField] private PlayerMover _playerMover;
-        [SerializeField] private GameObject _aimCamera;
 
         public void Move(InputAction.CallbackContext context)
         {
@@ -19,9 +18,15 @@ namespace CoreGameplay.PlayerInput
 
         public void Aim(InputAction.CallbackContext context)
         {
-            _aimCamera.SetActive(!_aimCamera.activeSelf);
-            OnAim?.Invoke(_aimCamera.activeSelf);
-            PlayerMovementSystem.s_Instance.AimingState = _aimCamera.activeSelf;
+            if(context.performed)
+            {
+                OnAim?.Invoke(true);
+            }
+
+            if(context.canceled)
+            {
+                OnAim?.Invoke(false);
+            }
         }
     }
 }

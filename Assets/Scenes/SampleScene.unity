@@ -1524,7 +1524,6 @@ GameObject:
   - component: {fileID: 306683480}
   - component: {fileID: 306683483}
   - component: {fileID: 306683482}
-  - component: {fileID: 306683481}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -1547,19 +1546,6 @@ Transform:
   m_Father: {fileID: 2035023978}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &306683481
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306683479}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &306683482
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3717,7 +3703,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveThreshold: 2
   Components: []
-  AimingState: 0
 --- !u!114 &878424104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4964,7 +4949,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1240634314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7620,25 +7605,13 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1832649067}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1848208894 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1654708747, guid: d6c46a3806706964e8ef675c7ec0523f,
-    type: 3}
-  m_PrefabInstance: {fileID: 3443295665353325482}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b913d891cc3fd0e4b8a87fdfd91bd2fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1848208898 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3443295666534641228, guid: d6c46a3806706964e8ef675c7ec0523f,
     type: 3}
   m_PrefabInstance: {fileID: 3443295665353325482}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3443295665353325483}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f25196c54cc5a404fbe2cbe129d39e34, type: 3}
@@ -7650,7 +7623,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3443295665353325482}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3443295665353325483}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 239d33d9b6e256740bae8047298ba160, type: 3}
@@ -8940,12 +8913,12 @@ PrefabInstance:
         type: 3}
       propertyPath: OnAim.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1848208894}
+      objectReference: {fileID: 1436266039}
     - target: {fileID: 3443295666534641228, guid: d6c46a3806706964e8ef675c7ec0523f,
         type: 3}
       propertyPath: OnAim.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1436266039}
+      objectReference: {fileID: 3443295665353325484}
     - target: {fileID: 3443295666534641228, guid: d6c46a3806706964e8ef675c7ec0523f,
         type: 3}
       propertyPath: OnAim.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -8964,17 +8937,17 @@ PrefabInstance:
     - target: {fileID: 3443295666534641228, guid: d6c46a3806706964e8ef675c7ec0523f,
         type: 3}
       propertyPath: OnAim.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetAim
+      value: set_IsAiming
       objectReference: {fileID: 0}
     - target: {fileID: 3443295666534641228, guid: d6c46a3806706964e8ef675c7ec0523f,
         type: 3}
       propertyPath: OnAim.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CoreGameplay.PlayerMovement.MovementAnimationHandler, Assembly-CSharp
+      value: CameraTargeter, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3443295666534641228, guid: d6c46a3806706964e8ef675c7ec0523f,
         type: 3}
       propertyPath: OnAim.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: CameraTargeter, Assembly-CSharp
+      value: CoreGameplay.PlayerStateMachine.PlayerStateMachine, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3443295666534641228, guid: d6c46a3806706964e8ef675c7ec0523f,
         type: 3}
@@ -9068,3 +9041,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6c46a3806706964e8ef675c7ec0523f, type: 3}
+--- !u!1 &3443295665353325483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3443295666534641268, guid: d6c46a3806706964e8ef675c7ec0523f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3443295665353325482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3443295665353325484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443295665353325483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5892277e9eccd7d42ba338f71930d555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMover: {fileID: 1848208899}
+  aimCamera: {fileID: 2131901654}
+  movementAnimationHandler: {fileID: 3443295665353325485}
+  crosshair: {fileID: 1240634313}
+--- !u!114 &3443295665353325485 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1654708747, guid: d6c46a3806706964e8ef675c7ec0523f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3443295665353325482}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443295665353325483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b913d891cc3fd0e4b8a87fdfd91bd2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
