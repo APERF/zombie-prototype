@@ -7,7 +7,7 @@ namespace CoreGameplay.PlayerMovement
         private Animator animator;
         [SerializeField] private float _animationTransition = 0.5f;
 
-        private void Start()
+        private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
         }
@@ -22,6 +22,7 @@ namespace CoreGameplay.PlayerMovement
         {
             float weight = isAiming ? 1 : 0;
             animator.SetLayerWeight(1, weight);
+            Debug.Log(weight);
         }
     }
 }

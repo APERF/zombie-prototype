@@ -1,5 +1,6 @@
 using UnityEngine;
 using CoreGameplay.PlayerMovement;
+using UnityEngine.Animations.Rigging;
 
 namespace CoreGameplay.PlayerStateMachine
 {
@@ -9,13 +10,15 @@ namespace CoreGameplay.PlayerStateMachine
         private GameObject aimCamera;
         private MovementAnimationHandler animationHandler;
         private GameObject crosshair;
+        private Rig rig;
 
-        public AimingState(PlayerStateMachine owner, PlayerMover mover, GameObject aimCamera, MovementAnimationHandler animationHandler, GameObject crosshair) : base(owner)
+        public AimingState(PlayerStateMachine owner, PlayerMover mover, GameObject aimCamera, MovementAnimationHandler animationHandler, GameObject crosshair, Rig rig) : base(owner)
         {
             this.mover = mover;
             this.aimCamera = aimCamera;
             this.animationHandler = animationHandler;
             this.crosshair = crosshair;
+            this.rig = rig;
         }
 
         public override void Finish()
@@ -24,6 +27,7 @@ namespace CoreGameplay.PlayerStateMachine
             aimCamera.SetActive(false);
             animationHandler.SetAim(false);
             crosshair.SetActive(false);
+            rig.weight = 0f;
         }
 
         public override void Start()
@@ -33,6 +37,7 @@ namespace CoreGameplay.PlayerStateMachine
             aimCamera.SetActive(true);
             animationHandler.SetAim(true);
             crosshair.SetActive(true);
+            rig.weight = 1f;
         }
 
         public override void Update()
