@@ -38,12 +38,13 @@ namespace CoreGameplay.PlayerMovement
         private void AlterRotation(PlayerMover mover)
         {
             Vector3 lookAtPos = mover.MainCamera.TransformPoint(new Vector3(0f, 0f, 10f));
-            lookAtPos.y = mover.transform.position.y;
             mover.Target.position = lookAtPos;
+            lookAtPos.y = mover.transform.position.y;
+
 
             if (mover.Direction.magnitude * 10f > _moveThreshold || mover.RotateAlways)
             {
-                Vector3 relativePos = mover.Target.position - mover.transform.position;
+                Vector3 relativePos = lookAtPos - mover.transform.position;
                 Quaternion newRotation = Quaternion.LookRotation(relativePos, Vector3.up);
                 mover.transform.rotation = newRotation;
             }

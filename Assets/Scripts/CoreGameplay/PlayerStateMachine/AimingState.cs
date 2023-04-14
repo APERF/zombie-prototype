@@ -11,14 +11,27 @@ namespace CoreGameplay.PlayerStateMachine
         private MovementAnimationHandler animationHandler;
         private GameObject crosshair;
         private Rig rig;
+        private PlayerAimingRotator aimingRotator;
 
-        public AimingState(PlayerStateMachine owner, PlayerMover mover, GameObject aimCamera, MovementAnimationHandler animationHandler, GameObject crosshair, Rig rig) : base(owner)
+        public AimingState(PlayerStateMachine owner, PlayerMover mover, GameObject aimCamera, MovementAnimationHandler animationHandler, GameObject crosshair, Rig rig, PlayerAimingRotator aimingRotator) : base(owner)
         {
             this.mover = mover;
             this.aimCamera = aimCamera;
             this.animationHandler = animationHandler;
             this.crosshair = crosshair;
             this.rig = rig;
+            this.aimingRotator = aimingRotator;
+        }
+
+        public override void Start()
+        {
+            mover.RotateAlways = false;
+            PlayerMovementSystem.s_Instance.Components.Add(mover);
+            aimCamera.SetActive(true);
+            animationHandler.SetAim(true);
+            crosshair.SetActive(true);
+            rig.weight = 1f;
+            aimingRotator.Rotate = true;
         }
 
         public override void Finish()
@@ -28,16 +41,7 @@ namespace CoreGameplay.PlayerStateMachine
             animationHandler.SetAim(false);
             crosshair.SetActive(false);
             rig.weight = 0f;
-        }
-
-        public override void Start()
-        {
-            mover.RotateAlways = true;
-            PlayerMovementSystem.s_Instance.Components.Add(mover);
-            aimCamera.SetActive(true);
-            animationHandler.SetAim(true);
-            crosshair.SetActive(true);
-            rig.weight = 1f;
+            aimingRotator.Rotate = false;
         }
 
         public override void Update()

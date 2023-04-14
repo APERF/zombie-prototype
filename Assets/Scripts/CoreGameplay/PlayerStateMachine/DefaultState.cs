@@ -26,7 +26,7 @@ namespace CoreGameplay.PlayerStateMachine
         {
             if(owner.IsAiming)
             {
-                owner.ChangeState(new AimingState(owner, mover, owner.AimCamera, owner.MovementAnimationHandler, owner.Crosshair, owner.Rig));
+                owner.ChangeState(new AimingState(owner, mover, owner.AimCamera, owner.MovementAnimationHandler, owner.Crosshair, owner.Rig, owner.AimingRotator));
             }
         }
     }

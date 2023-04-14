@@ -15,6 +15,7 @@ namespace CoreGameplay.PlayerStateMachine
         [SerializeField] private MovementAnimationHandler movementAnimationHandler;
         [SerializeField] private GameObject crosshair;
         [SerializeField] private Rig rig;
+        [SerializeField] private PlayerAimingRotator aimingRotator;
 
         public PlayerMover PlayerMover { get => playerMover; }
         public GameObject AimCamera { get => aimCamera;  }
@@ -23,6 +24,7 @@ namespace CoreGameplay.PlayerStateMachine
         public GameObject Crosshair { get => crosshair; }
         public BaseState CurrentState { get => currentState; }
         public Rig Rig { get => rig; }
+        public PlayerAimingRotator AimingRotator { get => aimingRotator; }
 
         public void ChangeState(BaseState newState)
         {
